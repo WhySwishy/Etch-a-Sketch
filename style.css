@@ -1,0 +1,39 @@
+
+body{
+    background-color:#ededed;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    gap: 8vh;
+    justify-content: center;
+}
+
+h1{
+    justify-self: center;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.buttons button{
+    height: 50px;
+    width: 170px;
+}
+
+.sketch-book{
+    height: 50vh;
+    width: 50vh;
+    background-color: white;
+}
+
+#colorpicker{
+    border: none;
+    align-self: center;
+   --webkit-appearance: none;
+   width: 80px;
+   height: 80px;
+}
