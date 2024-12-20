@@ -30,6 +30,7 @@ h1{
 button:hover{
     background-color: white;
    transform: scale(1.05);
+   
 }
 
 .sketch-book{
@@ -70,3 +71,7 @@ button:hover{
     font-weight: 500;
 }
 
+#colorpicker:hover{
+   transform: scale(1.05);
+   transition-timing-function: ease-in-out;
+}
