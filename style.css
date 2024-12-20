@@ -7,10 +7,12 @@ body{
     flex-direction: row;
     gap: 8vh;
     justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h1{
     justify-self: center;
+    font-size: 45px;
 }
 
 .buttons{
@@ -22,6 +24,12 @@ h1{
 .buttons button{
     height: 50px;
     width: 170px;
+    border-radius: 10px;
+}
+
+button:hover{
+    background-color: white;
+   transform: scale(1.05);
 }
 
 .sketch-book{
@@ -31,9 +39,34 @@ h1{
 }
 
 #colorpicker{
-    border: none;
     align-self: center;
-   --webkit-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
    width: 80px;
    height: 80px;
+   border: none;
+   border-radius: 100%;
+   padding: 0;
+   overflow: hidden;
+   cursor: pointer;
 }
+
+.slider{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: #ddd;
+  border-radius: 5px;
+  border: 2px;
+  border-color: black;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.slider-value{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    font-weight: 500;
+}
+
