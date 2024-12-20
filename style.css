@@ -71,6 +71,12 @@ button:hover{
     font-weight: 500;
 }
 
+.slider-value-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
 #colorpicker:hover{
    transform: scale(1.05);
    transition-timing-function: ease-in-out;

@@ -19,17 +19,23 @@
         <button>Rainbow Mode</button>
         <button>Eraser</button>
         <button>Clear</button>
+    
+
         <div class="slider-container">
-          <span class="slider-value">32 X 32</span>
-        <input type="range" min="1" max="64" value="32" class="slider">
+          <div class="slider-value-container">
+            <div class="slider-value" id="slider-value1">32</div>
+            <div>X</div>
+            <div class="slider-value" id="slider-value2">32</div>
+          </div>
+          <input type="range" min="1" max="64" value="32" class="slider">
         </div>
-    </div>
+      </div>
 
     <div class="sketch-book">
         <div class="sketch-area"></div>
     </div>
   
-  </div>
+   </div>
     <script src="sketch.js"></script>
 </body>
 </html>
