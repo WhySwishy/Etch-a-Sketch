@@ -37,6 +37,9 @@ button:hover{
     height: 50vh;
     width: 50vh;
     background-color: white;
+    display: grid;
+    grid-template-columns: repeat(32, 1fr);
+    grid-template-rows: repeat(32, 1fr);
 }
 
 #colorpicker{
@@ -58,9 +61,10 @@ button:hover{
   width: 100%;
   background: #ddd;
   border-radius: 5px;
-  border: 2px;
+  outline: 5px;
+  outline-color: black;
   border-color: black;
-  outline: none;
+  border: 5px;
   transition: background 0.3s;
 }
 
@@ -81,3 +85,4 @@ button:hover{
    transform: scale(1.05);
    transition-timing-function: ease-in-out;
 }
+
