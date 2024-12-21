@@ -40,6 +40,9 @@ button:hover{
 }
 
 .sketch-area{
+    height: 50vh;
+    width: 50vh;
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(32, 1fr);
     grid-template-rows: repeat(32, 1fr);
