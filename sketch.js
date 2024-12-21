@@ -40,12 +40,50 @@ const buttons = document.querySelectorAll('.buttons button')
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
 
-    buttons.forEach((btn) => btn.classList.remove('active')); // removes active from all other buttons
+    buttons.forEach((btn) => btn.classList.remove('active')); // removes .active from all other buttons
 
-    button.classList.toggle('active'); // adds active to only specific button clicked
+    button.classList.toggle('active'); // adds .active to only specific button clicked
+
+    buttonstatus(); // triggers a function to further write logic on specific button being on
   });
 });
 
 
 // Grid blocks changing colors as per color selected.
+
+const colorbtn = document.querySelector('#colorbtn');
+const lightenbtn = document.querySelector('#lightenbtn');
+const darkbtn = document.querySelector('#darkbtn');
+const rainbowbtn = document.querySelector('#rainbowbtn');
+const eraserbtn = document.querySelector('#eraserbtn');
+const clearbtn = document.querySelector('#clearbtn');
+
+
+function buttonstatus(){
+  if (colorbtn.classList.contains('active')){
+    
+    const griditems = document.querySelectorAll('.grid-item')
+
+    griditems.forEach(griditem => {
+      griditem.addEventListener('click', () => {
+        griditem.style.backgroundColor = 'black'
+      })
+    })
+  } 
+  else if (lightenbtn.classList.contains('active')){
+    console.log("lightenbtn")
+  }
+  else if (darkbtn.classList.contains('active')){
+    console.log("darkbtn")
+  }
+  else if (rainbowbtn.classList.contains('active')){
+    console.log("rainbowbtn")
+  }
+  else if (eraserbtn.classList.contains('active')){
+    console.log("eraserbtn")
+  }
+  else if (clearbtn.classList.contains('active')){
+    console.log("clearbtn")
+  }
+}
 
