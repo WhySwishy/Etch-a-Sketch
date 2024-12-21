@@ -37,6 +37,9 @@ button:hover{
     height: 50vh;
     width: 50vh;
     background-color: white;
+}
+
+.sketch-area{
     display: grid;
     grid-template-columns: repeat(32, 1fr);
     grid-template-rows: repeat(32, 1fr);
@@ -85,4 +88,6 @@ button:hover{
    transform: scale(1.05);
    transition-timing-function: ease-in-out;
 }
+
+
 
