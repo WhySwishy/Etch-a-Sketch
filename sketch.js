@@ -32,3 +32,20 @@ function creategriditems(size){
 }
 
 creategriditems(slider.value); 
+
+// Buttons on and off mechanism
+
+const buttons = document.querySelectorAll('.buttons button')
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+
+    buttons.forEach((btn) => btn.classList.remove('active')); // removes active from all other buttons
+
+    button.classList.toggle('active'); // adds active to only specific button clicked
+  });
+});
+
+
+// Grid blocks changing colors as per color selected.
+
