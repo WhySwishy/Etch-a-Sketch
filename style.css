@@ -33,6 +33,13 @@ button:hover{
    
 }
 
+/* Adding button on style */
+
+button.active{
+    color: white;
+    background-color: black;
+}
+
 .sketch-book{
     height: 50vh;
     width: 50vh;
