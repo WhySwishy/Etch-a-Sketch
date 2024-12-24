@@ -89,8 +89,13 @@ function buttonstatus(){
       griditem.addEventListener('click', handleEraserClick)
     })
   }
-}
+  else if(clearbtn.classList.contains('active')){
 
+    griditems.forEach((griditem) => {
+      griditem.style.backgroundColor = '';
+  })
+  }
+}
     
    // Event handler for grid item color click
   function handleGridItemClick(e) {
