@@ -19,6 +19,9 @@ slider.addEventListener('input', () => {
   creategriditems(slider.value);
 });
 
+
+
+
 // Changing the grid values using slider.value
 
 const sketcharea = document.querySelector('.sketch-area');
@@ -32,6 +35,7 @@ function creategriditems(size){
   for (let i = 1; i <= totalitems; i++){
     const newitem = document.createElement('div');
     newitem.className = 'grid-item';
+    newitem.style.backgroundColor = 'white';
     sketcharea.appendChild(newitem);
   }
 
@@ -42,6 +46,9 @@ function creategriditems(size){
 }
 
 creategriditems(slider.value); 
+
+
+
 
 // Buttons on and off mechanism
 
@@ -58,6 +65,9 @@ buttons.forEach((button) => {
   });
 });
 
+
+
+
 // Grid blocks changing colors as per color selected.
 
 const colorpicker = document.querySelector('#colorpicker');
@@ -68,34 +78,75 @@ colorpicker.addEventListener('input', (e) => {
   currentColor = e.target.value; // Update the current color whenever the user picks a new color
 });
 
+
+
 function buttonstatus(){
 
   const griditems = document.querySelectorAll('.grid-item');
 
    // Clear all previous listeners to avoid duplicates
-   griditems.forEach((griditem) => {
-    griditem.removeEventListener('click', handleGridItemClick);
+   griditems.forEach(griditem => {
+    const newGridItem = griditem.cloneNode(true);
+    griditem.replaceWith(newGridItem);
   });
 
+  // Re-select the new grid items after replacing
+  const updatedGridItems = document.querySelectorAll('.grid-item');
+
+  // Checks which button class has 'active' and add event listeners to each grid item to perform specific task
   if (colorbtn.classList.contains('active')){
 
-    griditems.forEach((griditem) => {
+    updatedGridItems.forEach((griditem) => {
       griditem.addEventListener('click', handleGridItemClick)
       });
   }
+  else if(lightenbtn.classList.contains('active')){
+
+    updatedGridItems.forEach((griditem) => {
+      griditem.addEventListener('click', () => {
+        const color = window.getComputedStyle(griditem).backgroundColor;
+
+        const {r, g, b} = parseRgb(color)
+        const { h, s, l} = rgbToHsl(r, g, b);
+
+        const newL = Math.min(l + 7, 100);
+        const newcolor = `hsl(${h}, ${s}%, ${newL}%)`;
+
+        griditem.style.backgroundColor = newcolor;
+
+        }
+    )})
+    }
+  else if(darkbtn.classList.contains('active')){
+
+    updatedGridItems.forEach((griditem) => {
+      griditem.addEventListener('click', () => {
+        const color = window.getComputedStyle(griditem).backgroundColor;
+
+        const {r, g, b} = parseRgb(color)
+        const { h, s, l} = rgbToHsl(r, g, b);
+
+        const newL = Math.max(l - 7, 0);
+        const newcolor = `hsl(${h}, ${s}%, ${newL}%)`;
+
+        griditem.style.backgroundColor = newcolor;
+    }
+  )})
+   }
   else if(eraserbtn.classList.contains('active')){
 
-    griditems.forEach((griditem) => {
+    updatedGridItems.forEach((griditem) => {
       griditem.addEventListener('click', handleEraserClick)
     })
   }
   else if(clearbtn.classList.contains('active')){
 
-    griditems.forEach((griditem) => {
-      griditem.style.backgroundColor = '';
+    updatedGridItems.forEach((griditem) => {
+      griditem.style.backgroundColor = 'white';
   })
   }
 }
+
     
    // Event handler for grid item color click
   function handleGridItemClick(e) {
@@ -104,28 +155,51 @@ function buttonstatus(){
 
   // Event handler for eraser click (clear color)
   function handleEraserClick(e) {
-  e.target.style.backgroundColor = ''; // Remove color (erase)
+  e.target.style.backgroundColor = 'white'; // Remove color (erase)
 }
 
+// Lighten button logic
 
+function rgbToHsl(r, g, b) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
 
-  /*
-  else if (lightenbtn.classList.contains('active')){
-    console.log("lightenbtn")
+  let max = Math.max(r, g, b);
+  let min = Math.min(r, g, b);
+  let l = (max + min) / 2;
+
+  let s = 0;
+  if (max !== min) {
+    s = l <= 0.5 ? (max - min) / (max + min) : (max - min) / (2.0 - max - min);
   }
-  else if (darkbtn.classList.contains('active')){
-    console.log("darkbtn")
+
+  let h = 0;
+  if (max !== min) {
+    if (max === r) {
+      h = (g - b) / (max - min);
+    } else if (max === g) {
+      h = 2.0 + (b - r) / (max - min);
+    } else {
+      h = 4.0 + (r - g) / (max - min);
+    }
   }
-  else if (rainbowbtn.classList.contains('active')){
-    console.log("rainbowbtn")
-  }
-  else if (eraserbtn.classList.contains('active')){
-    console.log("eraserbtn")
-  }
-  else if (clearbtn.classList.contains('active')){
-    console.log("clearbtn")
-  }
+
+  h = Math.round(h * 60);
+  if (h < 0) h += 360;
+
+  s = Math.round(s * 100);
+  l = Math.round(l * 100);
+
+  return { h, s, l };
 }
-*/
 
-// Applyimng function for color selecting im color mode
+function parseRgb(rgbString) {
+  const match = rgbString.match(/rgb\((\d+), (\d+), (\d+)\)/);
+  if (!match) {
+    throw new Error('Invalid RGB format');
+  }
+  const [, r, g, b] = match.map(Number);
+  return { r, g, b };
+}
+
