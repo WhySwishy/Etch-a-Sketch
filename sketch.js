@@ -94,11 +94,26 @@ function buttonstatus(){
   const updatedGridItems = document.querySelectorAll('.grid-item');
 
   // Checks which button class has 'active' and add event listeners to each grid item to perform specific task
-  if (colorbtn.classList.contains('active')){
-
+  
+  if (colorbtn.classList.contains('active')) {
+    let ismousedown = false;
+  
     updatedGridItems.forEach((griditem) => {
-      griditem.addEventListener('click', handleGridItemClick)
+      griditem.addEventListener('mousedown', () => {
+        ismousedown = true;
+        griditem.style.backgroundColor = currentColor;
       });
+  
+      griditem.addEventListener('mouseover', () => {
+        if (ismousedown) {
+          griditem.style.backgroundColor = currentColor;
+        }
+      });
+    });
+  
+    document.addEventListener('mouseup', () => {
+      ismousedown = false;
+    });
   }
   else if(lightenbtn.classList.contains('active')){
 
@@ -135,16 +150,45 @@ function buttonstatus(){
    }
   else if(rainbowbtn.classList.contains('active')){
 
+    let ismousedown = false;
+  
     updatedGridItems.forEach((griditem) => {
-      griditem.addEventListener('click', () => {
+      griditem.addEventListener('mousedown', () => {
+        ismousedown = true;
         griditem.style.backgroundColor = getRandomColor();
-    })})
+      });
+  
+      griditem.addEventListener('mouseover', () => {
+        if (ismousedown) {
+          griditem.style.backgroundColor = getRandomColor();
+        }
+      });
+    });
+  
+    document.addEventListener('mouseup', () => {
+      ismousedown = false;
+    });
   }
   else if(eraserbtn.classList.contains('active')){
 
+    let ismousedown = false;
+  
     updatedGridItems.forEach((griditem) => {
-      griditem.addEventListener('click', handleEraserClick)
-    })
+      griditem.addEventListener('mousedown', () => {
+        ismousedown = true;
+        griditem.style.backgroundColor = 'white';
+      });
+  
+      griditem.addEventListener('mouseover', () => {
+        if (ismousedown) {
+          griditem.style.backgroundColor = 'white';
+        }
+      });
+    });
+  
+    document.addEventListener('mouseup', () => {
+      ismousedown = false;
+    });
   }
   else if(clearbtn.classList.contains('active')){
 
