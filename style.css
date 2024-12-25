@@ -33,7 +33,7 @@ button:hover{
    
 }
 
-/* Adding button on style */
+/* Adding button toggle 'active' style */
 
 button.active{
     color: white;
