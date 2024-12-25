@@ -133,6 +133,13 @@ function buttonstatus(){
     }
   )})
    }
+  else if(rainbowbtn.classList.contains('active')){
+
+    updatedGridItems.forEach((griditem) => {
+      griditem.addEventListener('click', () => {
+        griditem.style.backgroundColor = getRandomColor();
+    })})
+  }
   else if(eraserbtn.classList.contains('active')){
 
     updatedGridItems.forEach((griditem) => {
@@ -158,7 +165,9 @@ function buttonstatus(){
   e.target.style.backgroundColor = 'white'; // Remove color (erase)
 }
 
-// Lighten button logic
+// Lighten and darken button logic
+
+// converts the rgb to hsl 
 
 function rgbToHsl(r, g, b) {
   r /= 255;
@@ -194,6 +203,8 @@ function rgbToHsl(r, g, b) {
   return { h, s, l };
 }
 
+// convert the rgb input got from computedstyle in right format to process to hsl  
+
 function parseRgb(rgbString) {
   const match = rgbString.match(/rgb\((\d+), (\d+), (\d+)\)/);
   if (!match) {
@@ -203,3 +214,12 @@ function parseRgb(rgbString) {
   return { r, g, b };
 }
 
+// Get random color function 
+
+function getRandomColor(){
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
